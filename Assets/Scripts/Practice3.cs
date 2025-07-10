@@ -39,13 +39,11 @@ public class Practice3 : MonoBehaviour
                     int ranColor = Random.Range(0, 7);
                     GameObject prefab = colorButtonList[ranColor];
                     GameObject child = Instantiate(prefab, this.transform);
-                    child.transform.parent = this.transform;
                 }
                 else
                 {
                     GameObject prefab = colorButtonList[grid[r, c] - 2];
                     GameObject child = Instantiate(prefab, this.transform);
-                    child.transform.parent = this.transform;
                 }
             }
             
