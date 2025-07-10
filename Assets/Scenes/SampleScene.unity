@@ -200,6 +200,7 @@ MonoBehaviour:
   - {fileID: 2864047641836946778, guid: 431906ee8b1d9254e8bc33cd36aebf5d, type: 3}
   - {fileID: 484403324218698016, guid: b8a05c49a55479a40934fda2370dc298, type: 3}
   - {fileID: 4917398530331122087, guid: 5090e93e943bd914bb168fc613041557, type: 3}
+  ranColor: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
