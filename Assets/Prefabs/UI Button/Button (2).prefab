@@ -135,3 +135,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorIndex: 0
   button: {fileID: 6293662136297789491}
+  color: 0

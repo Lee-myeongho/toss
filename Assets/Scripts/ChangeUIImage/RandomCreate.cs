@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class Practice3 : MonoBehaviour
+public class RandomCreate : MonoBehaviour
 {
     private const int ROWS = 15;
     private const int COLS = 10;
@@ -13,7 +13,7 @@ public class Practice3 : MonoBehaviour
     private bool[,] used = new bool[ROWS, COLS];
 
     public GameObject[] colorButtonList = new GameObject[7];
-    public int ranColor;
+    private int ranColor;
 
 
     public void InColorButton()
@@ -35,10 +35,10 @@ public class Practice3 : MonoBehaviour
                 GameObject child = Instantiate(prefab, this.transform);
 
                 // Button 컴포넌트가 있으면 index 할당
-                isButton button = child.GetComponent<isButton>();
-                if (button != null)
+                ButtonImage colorValue = child.GetComponent<ButtonImage>();
+                if (colorValue != null)
                 {
-                    button.colorIndex = ranColor;
+                    colorValue.colorValue = ranColor;
                 }
             }
         }
