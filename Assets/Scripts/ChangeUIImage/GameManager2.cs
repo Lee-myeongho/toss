@@ -22,7 +22,7 @@ public class GameManager2 : MonoBehaviour
 
     void CkeckAnswer()
     {
-        if(list.Count > 2  && list[list.Count - 2] + 1 != list[list.Count - 1])
+        if(list.Count >= 2  && list[list.Count - 2] + 1 != list[list.Count - 1])
         {
             list = new List<int>();
         }
