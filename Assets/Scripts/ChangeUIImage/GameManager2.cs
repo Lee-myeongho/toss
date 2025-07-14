@@ -4,17 +4,18 @@ using UnityEngine;
 public class GameManager2 : MonoBehaviour
 {
     public static List<int> list = new List<int>();
+    public static List<ButtonImage> buttonObjList = new List<ButtonImage>();
+
     public static bool successObj;
 
 
     private void Start()
     {
-        InvokeRepeating("A", 1f, 3f);
+        InvokeRepeating("A", 1f, 1f);
     }
 
     private void Update()
-    {
-        //successObj = false;
+    {;
         CkeckAnswer();
     }
 
@@ -27,39 +28,50 @@ public class GameManager2 : MonoBehaviour
     //틀렸을때 리스트 초기화
     void CkeckAnswer()
     {
-        if (list.Count >= 2 && list[list.Count - 2] + 1 != list[list.Count - 1])
+        if (list.Count > 2 && list[list.Count - 2] + 1 != list[list.Count - 1])
         {
-            list = new List<int>();
-        }
-        else if (list.Count >= 2 && !PointDown.isDragging)
+            //list = new List<int>();
+            list.Clear();
+            buttonObjList.Clear();
+    }
+        else if (list.Count > 2 && !PointDown.isDragging)
         {
             int point = list.Count;
             switch (point)
             {
                 case 3:
-                    Debug.Log("3개 성공");
                     Success();
+                    Debug.Log("3개 성공");
                     break;
                 case 4:
-                    Debug.Log("4개 성공");
                     Success();
+                    Debug.Log("4개 성공");
                     break;
                 case 5:
-                    Debug.Log("5개 성공");
                     Success();
+                    Debug.Log("5개 성공");
                     break;
                 case 6:
-                    Debug.Log("6개 성공");
                     Success();
+                    Debug.Log("6개 성공");
+                    break;
+                case 7:
+                    Success();
+                    Debug.Log("7개 성공");
                     break;
             }
+        }
+        else if (list.Count <= 2 && !PointDown.isDragging)
+        {
+            //list = new List<int>();
+            list.Clear();
+            buttonObjList.Clear();
         }
     }
 
     void Success()
     {
         successObj = true;
-        list = new List<int>();
     }
 
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class RandomCreate : MonoBehaviour
@@ -17,23 +17,54 @@ public class RandomCreate : MonoBehaviour
 
     public void InColorButton()
     {
+        float cellWidth = 100f;
+        float cellHeight = 100f;
+
+        // 전체 그리드의 가로/세로 크기 계산
+        float totalWidth = COLS * cellWidth;
+        float totalHeight = ROWS * cellHeight;
+
+        // 부모 UI(RectTransform)의 크기 기준
+        RectTransform parentRect = GetComponent<RectTransform>();
+        float maxWidth = parentRect.rect.width;
+        float maxHeight = parentRect.rect.height;
+
+        // 자동 축소 비율 계산 (1보다 커지지 않도록 제한)
+        float scaleX = maxWidth / totalWidth;
+        float scaleY = maxHeight / totalHeight;
+        float finalScale = Mathf.Min(scaleX, scaleY, 1f);
+
+        // 시작 좌표를 부모의 기준으로 (0, 0)
+        Vector2 startPosition = new Vector2(-270f, 420f);
+
         for (int r = 0; r < ROWS; r++)
         {
             for (int c = 0; c < COLS; c++)
             {
+                // 색상 선택
                 if (grid[r, c] == 1)
                 {
                     ranColor = Random.Range(0, 7);
                 }
                 else
                 {
-                    ranColor = grid[r, c] - 2;
+                    ranColor = Mathf.Clamp(grid[r, c] - 2, 0, colorButtonList.Length - 1);
                 }
-
                 GameObject prefab = colorButtonList[ranColor];
                 GameObject child = Instantiate(prefab, this.transform);
 
-                // Button ������Ʈ�� ������ index �Ҵ�
+                RectTransform rect = child.GetComponent<RectTransform>();
+                if (rect != null)
+                {
+                    // 🟩 왼쪽 위 기준 좌표로 배치
+                    float x = startPosition.x + c * cellWidth * finalScale;
+                    float y = startPosition.y - r * cellHeight * finalScale;
+                    rect.anchoredPosition = new Vector2(x, y);
+
+                    // 크기 조절
+                    rect.localScale = Vector3.one * finalScale;
+                }
+                // 색상 값 전달
                 ButtonImage colorValue = child.GetComponent<ButtonImage>();
                 if (colorValue != null)
                 {
@@ -42,6 +73,9 @@ public class RandomCreate : MonoBehaviour
             }
         }
     }
+
+
+
 
 
 

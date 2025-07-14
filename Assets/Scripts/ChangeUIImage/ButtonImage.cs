@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -30,6 +31,7 @@ public class ButtonImage : MonoBehaviour
         }
 
         MouseDrage();
+        objfalse();
     }
 
     public void MouseDrage()
@@ -51,12 +53,24 @@ public class ButtonImage : MonoBehaviour
         if (!hasClicked)
         {
             GameManager2.list.Add(colorValue); // GameManager2에 값 추가
+            GameManager2.buttonObjList.Add(this);
             hasClicked = true; // 한 번 실행되었음을 표시
-            if (buttonOnMouse && GameManager2.successObj )
+        }
+    }
+
+    private void objfalse()
+    {
+        if (buttonOnMouse && GameManager2.successObj && PointDown.isDragging == false)
+        {
+            foreach (ButtonImage button in GameManager2.buttonObjList)
             {
-                Debug.Log("성공");
-                this.gameObject.SetActive(false);
+                //Debug.Log("dkdk");
+                button.gameObject.SetActive(false);
             }
+            GameManager2.successObj = false;
+            //GameManager2.list = new List<int>();
+            GameManager2.list.Clear();
+            GameManager2.buttonObjList.Clear();
         }
     }
 }
