@@ -9,7 +9,7 @@ public class PointDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     // 클릭 시작
     public void OnPointerDown(PointerEventData eventData)
     {
-        isDragging = true;
+        isDragging = false;
     }
 
     // 드래그 중

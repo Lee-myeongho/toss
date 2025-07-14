@@ -28,13 +28,13 @@ public class ButtonImage : MonoBehaviour
         {
             buttonOnMouse = false;
         }
-        uiOnMouse = PointDown.isDragging;
 
         MouseDrage();
     }
 
     public void MouseDrage()
     {
+        uiOnMouse = PointDown.isDragging;
         if(buttonOnMouse && uiOnMouse)
         {
             TryAddColor();
@@ -51,9 +51,12 @@ public class ButtonImage : MonoBehaviour
         if (!hasClicked)
         {
             GameManager2.list.Add(colorValue); // GameManager2에 값 추가
-            //Debug.Log("Color added: " + colorValue); // 콘솔 출력
             hasClicked = true; // 한 번 실행되었음을 표시
+            if (buttonOnMouse && GameManager2.successObj )
+            {
+                Debug.Log("성공");
+                this.gameObject.SetActive(false);
+            }
         }
     }
-
 }
