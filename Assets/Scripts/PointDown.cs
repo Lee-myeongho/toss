@@ -22,6 +22,7 @@ public class PointDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public void OnPointerUp(PointerEventData eventData)
     {
         isDragging = false;
+        GameManager2.matList.Clear();
 
     }
 }

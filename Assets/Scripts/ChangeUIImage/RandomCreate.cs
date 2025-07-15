@@ -69,6 +69,8 @@ public class RandomCreate : MonoBehaviour
                 if (colorValue != null)
                 {
                     colorValue.colorValue = ranColor;
+
+                    colorValue.mat = new Vector2Int(r,c); //행
                 }
             }
         }
