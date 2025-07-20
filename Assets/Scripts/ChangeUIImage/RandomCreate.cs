@@ -15,6 +15,126 @@ public class RandomCreate : MonoBehaviour
     private int ranColor;
 
 
+    //---------------------------------------------------------------------------------------------------------------
+
+    private int[,] currentActiveGrid;
+
+    public void InitializeCurrentActiveGrid()
+    {
+        currentActiveGrid = new int[ROWS, COLS];
+        for (int r = 0; r < ROWS; r++)
+        {
+            for (int c = 0; c < COLS; c++)
+            {
+                currentActiveGrid[r, c] = -1; // '없음'을 의미하는 값으로 초기화
+            }
+        }
+
+        foreach (Transform child in transform)
+        {
+            ButtonImage buttonImage = child.GetComponent<ButtonImage>();
+            if (buttonImage != null && child.gameObject.activeSelf)
+            {
+                currentActiveGrid[buttonImage.mat.x, buttonImage.mat.y] = buttonImage.colorValue;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 남은 버튼 중에 3개 이상 길이의 연속적인 시퀀스가 있는지 확인합니다.
+    /// (colorValue의 시작값은 0이 아니어도 됩니다.)
+    /// </summary>
+    /// <returns>3개 이상 길이의 연속적인 시퀀스가 있으면 false (남아있음), 없으면 true (남아있지 않음)를 반환합니다.</returns>
+    public bool HasNoRemainingSequences()
+    {
+        // currentActiveGrid를 최신 활성화 상태로 업데이트
+        InitializeCurrentActiveGrid();
+
+        // 모든 활성화된 버튼을 잠재적인 시퀀스의 시작점으로 고려합니다.
+        for (int r = 0; r < ROWS; r++)
+        {
+            for (int c = 0; c < COLS; c++)
+            {
+                // 현재 셀에 활성화된 버튼이 있다면
+                if (currentActiveGrid[r, c] != -1)
+                {
+                    List<Vector2Int> path = new List<Vector2Int>();
+                    bool[,] visited = new bool[ROWS, COLS];
+
+                    // 현재 위치에서 DFS를 시작하여 경로를 찾습니다.
+                    // 목표 길이 3을 찾습니다.
+                    if (FindSequenceDFS(r, c, 3, path, visited, currentActiveGrid))
+                    {
+                        // 3개 이상 길이의 연속 시퀀스를 찾았으므로 false 반환 (아직 시퀀스가 남아있음)
+                        return false;
+                    }
+                }
+            }
+        }
+        // 모든 위치를 확인했지만 3개 이상 길이의 연속 시퀀스를 찾지 못했으므로 true 반환 (시퀀스가 없음)
+        return true;
+    }
+
+    /// <summary>
+    /// 주어진 그리드에서 연속적인 시퀀스를 재귀적으로 탐색하는 DFS 함수입니다.
+    /// (이 함수는 변경할 필요 없음)
+    /// </summary>
+    bool FindSequenceDFS(int row, int col, int targetLength, List<Vector2Int> currentPath, bool[,] visited, int[,] gridToSearch)
+    {
+        // 유효하지 않은 좌표 또는 이미 방문했거나 유효한 버튼이 아니면
+        if (row < 0 || row >= ROWS || col < 0 || col >= COLS || visited[row, col] || gridToSearch[row, col] == -1)
+        {
+            return false;
+        }
+
+        // 현재 버튼의 colorValue가 이전 버튼의 colorValue + 1이 아니라면 연속적이지 않음
+        // 단, currentPath.Count == 0 (즉, 시퀀스의 첫 번째 요소)일 때는 이 검사를 건너뜁니다.
+        if (currentPath.Count > 0)
+        {
+            Vector2Int lastCell = currentPath[currentPath.Count - 1];
+            int expectedColorValue = gridToSearch[lastCell.x, lastCell.y] + 1;
+            if (gridToSearch[row, col] != expectedColorValue)
+            {
+                return false;
+            }
+        }
+
+        visited[row, col] = true;
+        currentPath.Add(new Vector2Int(row, col));
+
+        if (currentPath.Count >= targetLength)
+        {
+            return true; // 목표 길이 이상의 연속 시퀀스를 찾음
+        }
+
+        List<Vector2Int> directions = new List<Vector2Int>
+        {
+            new Vector2Int(-1, 0), // 상
+            new Vector2Int(1, 0),  // 하
+            new Vector2Int(0, -1), // 좌
+            new Vector2Int(0, 1)   // 우
+        };
+
+        Shuffle(directions); // 탐색 방향을 무작위로 섞음
+
+        foreach (var dir in directions)
+        {
+            int nextRow = row + dir.x;
+            int nextCol = col + dir.y;
+
+            if (FindSequenceDFS(nextRow, nextCol, targetLength, currentPath, visited, gridToSearch))
+            {
+                return true;
+            }
+        }
+
+        visited[row, col] = false; // 백트래킹
+        currentPath.RemoveAt(currentPath.Count - 1); // 백트래킹
+        return false;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------
+
     public void InColorButton()
     {
         float cellWidth = 100f;
