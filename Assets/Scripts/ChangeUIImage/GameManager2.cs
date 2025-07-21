@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager2 : MonoBehaviour
 {
@@ -11,11 +12,24 @@ public class GameManager2 : MonoBehaviour
     private int score;
 
     public RandomCreate randomCreateRef;
+    public Button resetButton;
+    public GameObject randomCreatePrefab;   // í”„ë¦¬íŒ¹ ì°¸ì¡° (Inspectorì—ì„œ ë„£ê¸°)
+    private GameObject randomCreateInstance;
+    private bool resetTrigger;
 
     void Start()
     {
         if (randomCreateRef == null)
+        {
             randomCreateRef = FindAnyObjectByType<RandomCreate>();
+
+            if (randomCreateRef == null && randomCreatePrefab != null)
+            {
+                randomCreateInstance = Instantiate(randomCreatePrefab);
+                randomCreateRef = randomCreateInstance.GetComponent<RandomCreate>();
+            }
+        }
+        resetButton.onClick.AddListener(() => resetTrigger = true);
     }
 
     void Update()
@@ -26,10 +40,14 @@ public class GameManager2 : MonoBehaviour
         {
             randomCreateRef.InitializeCurrentActiveGrid();
 
-            if (randomCreateRef.HasNoRemainingSequences())
+            if (randomCreateRef.HasNoRemainingSequences() && resetTrigger == true)
             {
-                Debug.Log("´õ ÀÌ»ó ¿¬¼Ó ½ÃÄö½º ¾øÀ½. °ÔÀÓ ¿À¹ö ¶Ç´Â »õ ºí·Ï »ı¼º!");
-                // TODO: °ÔÀÓ ¿À¹ö Ã³¸® or ºí·Ï Àç»ı¼º
+                Debug.Log("ë¦¬ì…‹ ë¡œì§ ì‹¤í–‰");
+                randomCreateRef.ResetGrid();
+            }
+            else if (randomCreateRef.HasNoRemainingSequences() && resetTrigger == false)
+            {
+                Debug.Log("ë¦¬ì…‹ ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”");
             }
         }
     }
@@ -59,7 +77,7 @@ public class GameManager2 : MonoBehaviour
                 _ => 0
             };
 
-            Debug.Log($"{point}°³ ¼º°ø! ÇöÀç Á¡¼ö: {score}");
+            Debug.Log($"{point}ê°œ ì„±ê³µ! í˜„ì¬ ì ìˆ˜: {score}");
             Success();
         }
         else if (list.Count <= 2 && !PointDown.isDragging)
@@ -74,4 +92,7 @@ public class GameManager2 : MonoBehaviour
         successObj = true;
         matList.Clear();
     }
+
+
+
 }

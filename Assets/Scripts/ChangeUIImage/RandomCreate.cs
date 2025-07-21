@@ -211,4 +211,15 @@ public class RandomCreate : MonoBehaviour
         }
         Debug.Log(output);
     }
+
+    public void ResetGrid()
+    {
+        foreach (Transform child in transform)
+            Destroy(child.gameObject);  // 기존 버튼 제거
+
+        InitializeGrid();
+        GeneratePaths(PATH_COUNT, PATH_LENGTH);
+        PrintGrid();
+        InColorButton();
+    }
 }
