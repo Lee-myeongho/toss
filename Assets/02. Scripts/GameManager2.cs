@@ -12,10 +12,10 @@ public class GameManager2 : MonoBehaviour
     private int score;
 
     public RandomCreate randomCreateRef;
-    public Button resetButton;
+    //public Button resetButton;
     public GameObject randomCreatePrefab;   // 프리팹 참조 (Inspector에서 넣기)
     private GameObject randomCreateInstance;
-    private bool resetTrigger;
+    //private bool resetTrigger;
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class GameManager2 : MonoBehaviour
                 randomCreateRef = randomCreateInstance.GetComponent<RandomCreate>();
             }
         }
-        resetButton.onClick.AddListener(() => resetTrigger = true);
+        //resetButton.onClick.AddListener(() => resetTrigger = true);
     }
 
     void Update()
@@ -40,15 +40,15 @@ public class GameManager2 : MonoBehaviour
         {
             randomCreateRef.InitializeCurrentActiveGrid();
 
-            if (randomCreateRef.HasNoRemainingSequences() && resetTrigger == true)
+            if (randomCreateRef.HasNoRemainingSequences())
             {
                 Debug.Log("리셋 로직 실행");
                 randomCreateRef.ResetGrid();
             }
-            else if (randomCreateRef.HasNoRemainingSequences() && resetTrigger == false)
-            {
-                Debug.Log("리셋 버튼을 눌러주세요");
-            }
+            //else if (randomCreateRef.HasNoRemainingSequences())
+            //{
+            //    Debug.Log("리셋 버튼을 눌러주세요");
+            //}
         }
     }
 
