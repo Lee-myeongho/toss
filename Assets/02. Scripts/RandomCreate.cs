@@ -98,8 +98,8 @@ public class RandomCreate : MonoBehaviour
 
     public void InColorButton()
     {
-        float cellWidth = 150f, cellHeight = 150f;
-        Vector2 startPosition = new(-260f, 380f);
+        float cellWidth = 240f, cellHeight = 230f;
+        Vector2 startPosition = new(-283f, 415f);
         RectTransform parent = GetComponent<RectTransform>();
 
         float scale = Mathf.Min(parent.rect.width / (COLS * cellWidth), parent.rect.height / (ROWS * cellHeight), 1f);
@@ -115,7 +115,8 @@ public class RandomCreate : MonoBehaviour
                 RectTransform rect = child.GetComponent<RectTransform>();
 
                 rect.anchoredPosition = new(startPosition.x + c * cellWidth * scale, startPosition.y - r * cellHeight * scale);
-                rect.localScale = Vector3.one * scale;
+                rect.localScale = Vector3.one;
+                    //* scale;
 
                 ButtonImage button = child.GetComponent<ButtonImage>();
                 if (button)
