@@ -4,10 +4,10 @@ using UnityEngine.Diagnostics;
 
 public class RandomCreate : MonoBehaviour
 {
-    private const int ROWS = 15;
-    private const int COLS = 10;
+    private const int ROWS = 12;
+    private const int COLS = 8;
     private const int PATH_LENGTH = 7;
-    private const int PATH_COUNT = 7;
+    private const int PATH_COUNT = 9;
 
     private const int EMPTY = -1;
     private const int DEFAULT_GRID = 1;
@@ -19,6 +19,8 @@ public class RandomCreate : MonoBehaviour
 
     public GameObject[] colorButtonList;
     private int ranColor;
+
+    public float cellWidth, cellHeight;
 
     private static readonly List<Vector2Int> Directions = new()
     {
@@ -98,8 +100,8 @@ public class RandomCreate : MonoBehaviour
 
     public void InColorButton()
     {
-        float cellWidth = 240f, cellHeight = 230f;
-        Vector2 startPosition = new(-283f, 415f);
+        //float cellWidth = 240f, cellHeight = 230f;
+        Vector2 startPosition = new(-283f, 432f);
         RectTransform parent = GetComponent<RectTransform>();
 
         float scale = Mathf.Min(parent.rect.width / (COLS * cellWidth), parent.rect.height / (ROWS * cellHeight), 1f);
@@ -114,7 +116,8 @@ public class RandomCreate : MonoBehaviour
                 GameObject child = Instantiate(colorButtonList[ranColor], transform);
                 RectTransform rect = child.GetComponent<RectTransform>();
 
-                rect.anchoredPosition = new(startPosition.x + c * cellWidth * scale, startPosition.y - r * cellHeight * scale);
+                //rect.anchoredPosition = new(startPosition.x + c * cellWidth * scale, startPosition.y - r * cellHeight * scale);
+                rect.anchoredPosition = new(startPosition.x + c * cellWidth, startPosition.y - r * cellHeight);
                 rect.localScale = Vector3.one;
                     //* scale;
 
