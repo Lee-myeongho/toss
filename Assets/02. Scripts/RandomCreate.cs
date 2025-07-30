@@ -20,8 +20,6 @@ public class RandomCreate : MonoBehaviour
     public GameObject[] colorButtonList;
     private int ranColor;
 
-    public float cellWidth, cellHeight;
-
     private static readonly List<Vector2Int> Directions = new()
     {
         new Vector2Int(-1, 0),
@@ -100,7 +98,7 @@ public class RandomCreate : MonoBehaviour
 
     public void InColorButton()
     {
-        //float cellWidth = 240f, cellHeight = 230f;
+        float cellWidth = 80f, cellHeight = 80f;
         Vector2 startPosition = new(-283f, 432f);
         RectTransform parent = GetComponent<RectTransform>();
 
@@ -116,10 +114,8 @@ public class RandomCreate : MonoBehaviour
                 GameObject child = Instantiate(colorButtonList[ranColor], transform);
                 RectTransform rect = child.GetComponent<RectTransform>();
 
-                //rect.anchoredPosition = new(startPosition.x + c * cellWidth * scale, startPosition.y - r * cellHeight * scale);
                 rect.anchoredPosition = new(startPosition.x + c * cellWidth, startPosition.y - r * cellHeight);
                 rect.localScale = Vector3.one;
-                    //* scale;
 
                 ButtonImage button = child.GetComponent<ButtonImage>();
                 if (button)
