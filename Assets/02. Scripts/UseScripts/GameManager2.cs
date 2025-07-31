@@ -9,7 +9,11 @@ public class GameManager2 : MonoBehaviour
     public static List<Vector2Int> matList = new();
 
     public static bool successObj;
-    private int score;
+    public int score;
+    public float timeLeft = 120f;
+    public bool isGameOver = false;
+    public GameObject gameOverPanel;
+
 
     public RandomCreate randomCreateRef;
     //public Button resetButton;
@@ -19,6 +23,9 @@ public class GameManager2 : MonoBehaviour
 
     void Start()
     {
+        gameOverPanel.SetActive(false);
+        Time.timeScale = 1f;
+
         if (randomCreateRef == null)
         {
             randomCreateRef = FindAnyObjectByType<RandomCreate>();
@@ -34,6 +41,9 @@ public class GameManager2 : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver) return;
+        UpdateTimer();
+
         CheckAnswer();
 
         if (CanCheckRemainingSequences())
@@ -45,10 +55,6 @@ public class GameManager2 : MonoBehaviour
                 Debug.Log("리셋 로직 실행");
                 randomCreateRef.ResetGrid();
             }
-            //else if (randomCreateRef.HasNoRemainingSequences())
-            //{
-            //    Debug.Log("리셋 버튼을 눌러주세요");
-            //}
         }
     }
 
@@ -91,6 +97,25 @@ public class GameManager2 : MonoBehaviour
     {
         successObj = true;
         matList.Clear();
+    }
+
+
+    void UpdateTimer()
+    {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
+        {
+            timeLeft = 0;
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        Debug.Log("GameOver");
     }
 
 

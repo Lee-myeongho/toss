@@ -4,11 +4,11 @@ using TMPro;
 public class TimerManager : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    private GameManager3 gameManager;
+    private GameManager2 gameManager;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager3>();
+        gameManager = FindAnyObjectByType<GameManager2>();
     }
 
     void Update()

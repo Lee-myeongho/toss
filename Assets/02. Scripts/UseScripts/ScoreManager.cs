@@ -4,11 +4,11 @@ using TMPro;
 public class ScoreManger : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    private GameManager3 gameManager;
+    private GameManager2 gameManager;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager3>();
+        gameManager = FindAnyObjectByType<GameManager2>();
     }
 
     void Update()
