@@ -20,7 +20,7 @@ public class RandomCreate : MonoBehaviour
     public GameObject[] colorButtonList;
     private int ranColor;
 
-    public float cellWidth, cellHeight;
+    //public float cellWidth, cellHeight;
 
     private static readonly List<Vector2Int> Directions = new()
     {
@@ -100,8 +100,8 @@ public class RandomCreate : MonoBehaviour
 
     public void InColorButton()
     {
-        //float cellWidth = 240f, cellHeight = 230f;
-        Vector2 startPosition = new(-283f, 432f);
+        float cellWidth = 80f, cellHeight = 80f;
+        Vector2 startPosition = new(-280f, 440f);
         RectTransform parent = GetComponent<RectTransform>();
 
         float scale = Mathf.Min(parent.rect.width / (COLS * cellWidth), parent.rect.height / (ROWS * cellHeight), 1f);
