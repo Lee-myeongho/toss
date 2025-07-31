@@ -221,6 +221,7 @@ public class RandomCreate : MonoBehaviour
         foreach (Transform child in transform)
             Destroy(child.gameObject);  // 기존 버튼 제거
 
+        used = new bool[ROWS, COLS];
         InitializeGrid();
         GeneratePaths(PATH_COUNT, PATH_LENGTH);
         PrintGrid();
