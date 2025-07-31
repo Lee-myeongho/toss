@@ -29,7 +29,6 @@ public class GameManager2 : MonoBehaviour
                 randomCreateRef = randomCreateInstance.GetComponent<RandomCreate>();
             }
         }
-        //resetButton.onClick.AddListener(() => resetTrigger = true);
     }
 
     void Update()
@@ -42,13 +41,11 @@ public class GameManager2 : MonoBehaviour
 
             if (randomCreateRef.HasNoRemainingSequences())
             {
+                
                 Debug.Log("리셋 로직 실행");
                 randomCreateRef.ResetGrid();
             }
-            //else if (randomCreateRef.HasNoRemainingSequences())
-            //{
-            //    Debug.Log("리셋 버튼을 눌러주세요");
-            //}
+
         }
     }
 
