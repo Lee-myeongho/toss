@@ -53,7 +53,8 @@ public class RandomCreate : MonoBehaviour
         {
             for (int c = 0; c < COLS; c++)
             {
-                if (currentActiveGrid[r, c] != EMPTY)
+                if (currentActiveGrid[r, c] == 2)
+                //if (currentActiveGrid[r, c] != EMPTY)
                 {
                     var path = new List<Vector2Int>();
                     var visited = new bool[ROWS, COLS];
@@ -104,7 +105,6 @@ public class RandomCreate : MonoBehaviour
         Vector2 startPosition = new(-280f, 440f);
         RectTransform parent = GetComponent<RectTransform>();
 
-        float scale = Mathf.Min(parent.rect.width / (COLS * cellWidth), parent.rect.height / (ROWS * cellHeight), 1f);
 
         for (int r = 0; r < ROWS; r++)
         {
@@ -116,10 +116,8 @@ public class RandomCreate : MonoBehaviour
                 GameObject child = Instantiate(colorButtonList[ranColor], transform);
                 RectTransform rect = child.GetComponent<RectTransform>();
 
-                //rect.anchoredPosition = new(startPosition.x + c * cellWidth * scale, startPosition.y - r * cellHeight * scale);
                 rect.anchoredPosition = new(startPosition.x + c * cellWidth, startPosition.y - r * cellHeight);
                 rect.localScale = Vector3.one;
-                    //* scale;
 
                 ButtonImage button = child.GetComponent<ButtonImage>();
                 if (button)

@@ -65,12 +65,15 @@ public class GameManager2 : MonoBehaviour
 
     void CheckAnswer()
     {
-        if (list.Count > 2 && list[^2] + 1 != list[^1])
+        //if (list[0] != 2)
+        //    return;
+
+        if (list.Count > 2 && list[^2] + 1 != list[^1]) //틀리면 clear
         {
             list.Clear();
             buttonObjList.Clear();
         }
-        else if (list.Count > 2 && !PointDown.isDragging)
+        else if (list.Count > 2 && !PointDown.isDragging) //점수획득
         {
             int point = list.Count;
             score += point switch
@@ -86,7 +89,7 @@ public class GameManager2 : MonoBehaviour
             Debug.Log($"{point}개 성공! 현재 점수: {score}");
             Success();
         }
-        else if (list.Count <= 2 && !PointDown.isDragging)
+        else if (list.Count <= 2 && !PointDown.isDragging) //2개 이하로 클릭했을때 clear
         {
             list.Clear();
             buttonObjList.Clear();

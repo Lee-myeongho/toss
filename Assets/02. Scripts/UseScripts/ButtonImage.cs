@@ -40,12 +40,14 @@ public class ButtonImage : MonoBehaviour
 
     private void TryAddColor()
     {
+
         GameManager2.list.Add(colorValue);
         GameManager2.buttonObjList.Add(this);
         GameManager2.matList.Add(mat);
         hasClicked = true;
         CheckSide();
-        if (!sideCheck)
+
+        if (!sideCheck || GameManager2.list[0] != 0)
         {
             GameManager2.list.Clear();
             GameManager2.buttonObjList.Clear();

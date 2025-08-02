@@ -310,7 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596389440}
   - component: {fileID: 596389443}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Random Tile Create
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,10 +712,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1039705240}
   - {fileID: 546146819}
   - {fileID: 1268037770}
   - {fileID: 756211500}
+  - {fileID: 1039705240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -854,7 +854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039705240}
   - component: {fileID: 1039705241}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
