@@ -4,6 +4,8 @@ using TMPro;
 public class ScoreManger : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI GameOverScoreText;
+
     private GameManager2 gameManager;
 
     void Start()
@@ -14,6 +16,7 @@ public class ScoreManger : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + gameManager.score;
+        GameOverScoreText.text = "Á¡¼ö: " + gameManager.score;
     }
 }
 

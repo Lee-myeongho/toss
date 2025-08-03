@@ -100,6 +100,7 @@ public class GameManager2 : MonoBehaviour
     {
         successObj = true;
         matList.Clear();
+        //list.Clear();
     }
 
 
