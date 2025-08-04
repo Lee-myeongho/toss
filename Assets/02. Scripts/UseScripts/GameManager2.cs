@@ -16,10 +16,8 @@ public class GameManager2 : MonoBehaviour
 
 
     public RandomCreate randomCreateRef;
-    //public Button resetButton;
     public GameObject randomCreatePrefab;   // 프리팹 참조 (Inspector에서 넣기)
     private GameObject randomCreateInstance;
-    //private bool resetTrigger;
 
     void Start()
     {
@@ -36,7 +34,6 @@ public class GameManager2 : MonoBehaviour
                 randomCreateRef = randomCreateInstance.GetComponent<RandomCreate>();
             }
         }
-        //resetButton.onClick.AddListener(() => resetTrigger = true);
     }
 
     void Update()
@@ -65,31 +62,20 @@ public class GameManager2 : MonoBehaviour
 
     void CheckAnswer()
     {
-        //if (list[0] != 2)
-        //    return;
 
-        if (list.Count > 2 && list[^2] + 1 != list[^1]) //틀리면 clear
+        if (list.Count >= 2 && list[^2] + 1 != list[^1]) //틀리면 clear
         {
             list.Clear();
             buttonObjList.Clear();
         }
-        else if (list.Count > 2 && !PointDown.isDragging) //점수획득
+        else if (list.Count == 7 && !PointDown.isDragging) //점수획득
         {
-            int point = list.Count;
-            score += point switch
-            {
-                3 => 50,
-                4 => 80,
-                5 => 130,
-                6 => 200,
-                7 => 300,
-                _ => 0
-            };
+            score += 300;
 
-            Debug.Log($"{point}개 성공! 현재 점수: {score}");
+            Debug.Log($"현재 점수: {score}");
             Success();
         }
-        else if (list.Count <= 2 && !PointDown.isDragging) //2개 이하로 클릭했을때 clear
+        else if (list.Count <= 6 && !PointDown.isDragging) //2개 이하로 클릭했을때 clear
         {
             list.Clear();
             buttonObjList.Clear();
@@ -100,7 +86,6 @@ public class GameManager2 : MonoBehaviour
     {
         successObj = true;
         matList.Clear();
-        //list.Clear();
     }
 
 
@@ -122,6 +107,6 @@ public class GameManager2 : MonoBehaviour
         Debug.Log("GameOver");
     }
 
-
+    
 
 }

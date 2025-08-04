@@ -26,7 +26,7 @@ public class ButtonImage : MonoBehaviour
             hasClicked = false;
         }
 
-        if (isMouseOver && GameManager2.successObj && !PointDown.isDragging)
+        if (GameManager2.successObj && !PointDown.isDragging)
         {
             foreach (var btn in GameManager2.buttonObjList)
                 btn.gameObject.SetActive(false);

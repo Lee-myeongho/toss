@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Diagnostics;
 
 public class RandomCreate : MonoBehaviour
 {
@@ -53,13 +52,12 @@ public class RandomCreate : MonoBehaviour
         {
             for (int c = 0; c < COLS; c++)
             {
-                if (currentActiveGrid[r, c] == 2)
-                //if (currentActiveGrid[r, c] != EMPTY)
+                if (currentActiveGrid[r, c] == 0)
                 {
                     var path = new List<Vector2Int>();
                     var visited = new bool[ROWS, COLS];
 
-                    if (FindSequenceDFS(r, c, 3, path, visited, currentActiveGrid))
+                    if (FindSequenceDFS(r, c, 7, path, visited, currentActiveGrid))
                         return false;
                 }
             }
