@@ -5,8 +5,8 @@ public class ScoreManger : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI GameOverScoreText;
-
     private GameManager2 gameManager;
+
 
     void Start()
     {

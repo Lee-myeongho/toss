@@ -814,6 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetButton: {fileID: 574406843}
+  randomCreateRef: {fileID: 596389443}
+  gameOver: {fileID: 756211499}
 --- !u!1 &756211499
 GameObject:
   m_ObjectHideFlags: 0
