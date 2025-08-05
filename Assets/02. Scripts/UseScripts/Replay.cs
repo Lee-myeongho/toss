@@ -17,7 +17,6 @@ public class Replay : MonoBehaviour
 
     private void GameReset() //게임 다시하기
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         randomCreateRef.ResetGrid();
         GameManager2.list.Clear();
         gameManager.isGameOver = false;
