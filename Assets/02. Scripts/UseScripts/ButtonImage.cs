@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonImage : MonoBehaviour
 {
     public int colorValue;
     public Vector2Int mat;
+    public Image buttonBackground;
+    private Image buttonBackgroundValue;
+    private Color originalColor;
 
     private bool hasClicked;
     private bool sideCheck = true;
 
     private RectTransform rectTransform;
 
-    void Awake() => rectTransform = GetComponent<RectTransform>();
+    void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        buttonBackgroundValue = buttonBackground.GetComponent<Image>();
+        originalColor = buttonBackgroundValue.color;
+    }
 
     void Update()
     {
@@ -19,7 +28,15 @@ public class ButtonImage : MonoBehaviour
         if (isMouseOver && PointDown.isDragging)
         {
             if (!hasClicked)
+            {
+                buttonBackground.color = new Color(100/255, 100/255, 100/255, 1);
                 TryAddColor();
+            }
+        }
+        else if(!PointDown.isDragging)
+        {
+            buttonBackground.color = originalColor;
+            hasClicked = false;
         }
         else
         {

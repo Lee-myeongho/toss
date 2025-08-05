@@ -90,3 +90,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorValue: 0
   mat: {x: 0, y: 0}
+  buttonBackgroundImage: {fileID: 0}
