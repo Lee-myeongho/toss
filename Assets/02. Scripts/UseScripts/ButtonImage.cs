@@ -9,7 +9,7 @@ public class ButtonImage : MonoBehaviour
     private Image buttonBackgroundValue;
     private Color originalColor;
 
-    private bool hasClicked;
+    public bool hasClicked;
     private bool sideCheck = true;
 
     private RectTransform rectTransform;
@@ -25,9 +25,9 @@ public class ButtonImage : MonoBehaviour
     {
         bool isMouseOver = RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition);
 
-        if (isMouseOver && PointDown.isDragging)
+        if (PointDown.isDragging)
         {
-            if (!hasClicked)
+            if (isMouseOver && !hasClicked)
             {
                 buttonBackground.color = new Color(100/255, 100/255, 100/255, 1);
                 TryAddColor();
