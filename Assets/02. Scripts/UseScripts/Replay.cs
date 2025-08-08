@@ -22,7 +22,9 @@ public class Replay : MonoBehaviour
         gameManager.isGameOver = false;
         gameManager.score = 0;
         gameManager.timeLeft = 120f;
+        gameManager.outroBackground.SetActive(false);
         Time.timeScale = 1f;
         gameOver.SetActive(false);
+        gameManager.gameBackgound.SetActive(true);
     }
 }

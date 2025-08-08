@@ -6,6 +6,7 @@ public class GameStart : MonoBehaviour
     public Button gameStartButton;
     public GameObject gameBackground;
     public GameObject manager;
+    public GameObject introBackground;
 
     private void Start()
     {
@@ -16,6 +17,8 @@ public class GameStart : MonoBehaviour
     {
         gameBackground.SetActive(true);
         manager.SetActive(true);
+        introBackground.SetActive(false);
         this.gameObject.SetActive(false);
+        
     }
 }

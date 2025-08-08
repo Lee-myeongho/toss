@@ -13,6 +13,8 @@ public class GameManager2 : MonoBehaviour
     public float timeLeft = 120f;
     public bool isGameOver = false;
     public GameObject gameOverPanel;
+    public GameObject outroBackground;
+    public GameObject gameBackgound;
 
 
     public RandomCreate randomCreateRef;
@@ -103,6 +105,8 @@ public class GameManager2 : MonoBehaviour
     {
         isGameOver = true;
         gameOverPanel.SetActive(true);
+        outroBackground.SetActive(true);
+        gameBackgound.SetActive(false);
         Time.timeScale = 0f;
         Debug.Log("GameOver");
     }
