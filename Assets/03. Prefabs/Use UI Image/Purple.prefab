@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 85, y: 85}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7315819084554718741
 CanvasRenderer:
@@ -167,3 +167,4 @@ MonoBehaviour:
   colorValue: 0
   mat: {x: 0, y: 0}
   buttonBackground: {fileID: 1082763230903419645}
+  hasClicked: 0
