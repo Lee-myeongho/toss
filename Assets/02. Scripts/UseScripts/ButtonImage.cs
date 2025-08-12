@@ -14,6 +14,9 @@ public class ButtonImage : MonoBehaviour
 
     private RectTransform rectTransform;
 
+    public AudioSource audioSource;
+    public AudioClip clickSound;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -29,6 +32,7 @@ public class ButtonImage : MonoBehaviour
         {
             if (isMouseOver && !hasClicked)
             {
+                audioSource.PlayOneShot(clickSound);
                 buttonBackground.color = new Color(100/255, 100/255, 100/255, 1);
                 TryAddColor();
             }
