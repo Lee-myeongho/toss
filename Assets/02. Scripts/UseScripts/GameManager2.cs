@@ -72,7 +72,7 @@ public class GameManager2 : MonoBehaviour
         }
         else if (list.Count == 7 && !PointDown.isDragging) //점수획득
         {
-            score += 300;
+            score += 10;
 
             Debug.Log($"현재 점수: {score}");
             Success();
