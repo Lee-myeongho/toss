@@ -33,6 +33,7 @@ public class ButtonImage : MonoBehaviour
             if (isMouseOver && !hasClicked)
             {
                 audioSource.PlayOneShot(clickSound);
+
                 buttonBackground.color = new Color(100/255, 100/255, 100/255, 1);
                 TryAddColor();
             }

@@ -51,7 +51,7 @@ public class GameManager2 : MonoBehaviour
 
             if (randomCreateRef.HasNoRemainingSequences())
             {
-                Debug.Log("리셋 로직 실행");
+                //Debug.Log("리셋 로직 실행");
                 randomCreateRef.ResetGrid();
             }
         }
@@ -70,17 +70,17 @@ public class GameManager2 : MonoBehaviour
             list.Clear();
             buttonObjList.Clear();
         }
+        else if (list.Count < 7 && !PointDown.isDragging) //6개 이하로 클릭했을때 clear
+        {
+            list.Clear();
+            buttonObjList.Clear();
+        }
         else if (list.Count == 7 && !PointDown.isDragging) //점수획득
         {
             score += 10;
 
             Debug.Log($"현재 점수: {score}");
             Success();
-        }
-        else if (list.Count <= 6 && !PointDown.isDragging) //2개 이하로 클릭했을때 clear
-        {
-            list.Clear();
-            buttonObjList.Clear();
         }
     }
 
