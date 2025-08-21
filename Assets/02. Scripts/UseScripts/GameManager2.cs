@@ -65,15 +65,13 @@ public class GameManager2 : MonoBehaviour
     void CheckAnswer()
     {
 
-        if (list.Count >= 2 && list[^2] + 1 != list[^1]) //틀리면 clear
+        if (list.Count >= 2 && list[^2] + 1 != list[^1] && !PointDown.isDragging) //틀리면 clear
         {
-            list.Clear();
-            buttonObjList.Clear();
+            ResetSelection();
         }
         else if (list.Count < 7 && !PointDown.isDragging) //6개 이하로 클릭했을때 clear
         {
-            list.Clear();
-            buttonObjList.Clear();
+            ResetSelection();
         }
         else if (list.Count == 7 && !PointDown.isDragging) //점수획득
         {
@@ -84,6 +82,14 @@ public class GameManager2 : MonoBehaviour
         }
     }
 
+    void ResetSelection()
+    {
+        list.Clear();
+        buttonObjList.Clear();
+        matList.Clear();
+
+        PointDown.isDragging = false;
+    }
     void Success()
     {
         successObj = true;
@@ -110,7 +116,5 @@ public class GameManager2 : MonoBehaviour
         Time.timeScale = 0f;
         Debug.Log("GameOver");
     }
-
-    
 
 }
